@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//site pages
+Route::get("/", [SiteController::class, "index"])->name("homepage");
+Route::get("/listings", [SiteController::class, "listing"])->name("listingpage");
+Route::get("/listings/{id}/detail", [SiteController::class, "detail"])->name("listingdetailpage");
+Route::get("/listings/category/{id}/details", [SiteController::class, "listingByCategory"])->name("categorylistingdetailpage");
+
+
