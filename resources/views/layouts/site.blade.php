@@ -42,16 +42,44 @@
                                     <li class="nav-item active">
                                         <a class="nav-link" href="/">Home</a>
                                     </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="#">About</a>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Categories
+                                        <span class="icon-arrow-down"></span>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            @foreach ($categories as $cat)
+                                                <a class="dropdown-item" href="listings/category/{{$cat->id}}/detail">{{$cat->name}}</a>
+                                            @endforeach
+            
+                                        </div>
                                     </li>
+
                                     <li class="nav-item active">
                                         <a class="nav-link" href="/listings">Listing</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Blog</a>
                                     </li>
-                                    <li><a href="#" class="btn btn-outline-light top-btn"><span class="ti-plus"></span> Add Listing</a></li>
+                                    @if (Route::has('login'))
+                                        
+                                            @auth
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
+                                                </li>
+                                            @else
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                                                </li>
+                                                @if (Route::has('register'))                                                
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                                    </li>
+                                                @endif
+                                            @endauth
+                                        
+                                    @endif
+                                
                                 </ul>
                             </div>
                         </nav>

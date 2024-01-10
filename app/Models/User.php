@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function businessListing()
+    {
+        return $this->hasOne(BusinessListing::class);
+    }
 }
